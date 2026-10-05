@@ -1,6 +1,6 @@
-# book-api · AnyReader 书源插件契约层
+# book-api · 墨伴书源插件契约层
 
-AnyReader 宿主与外部书源插件之间的**唯一契约**：纯 Kotlin/JVM、零第三方依赖（仅 stdlib），
+墨伴宿主与外部书源插件之间的**唯一契约**：纯 Kotlin/JVM、零第三方依赖（仅 stdlib），
 不依赖 Android / okhttp / Room，插件可用任何普通 Kotlin 工程开发。
 
 ## 集成方式

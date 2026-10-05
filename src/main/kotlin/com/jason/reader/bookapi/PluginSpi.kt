@@ -3,7 +3,7 @@ package com.jason.reader.bookapi
 /**
  * 书源插件 SPI（Service Provider Interface）。
  *
- * 这是宿主（AnyReader）与外部书源插件之间的**唯一契约层**：
+ * 这是宿主（墨伴）与外部书源插件之间的**唯一契约层**：
  * - 纯 Kotlin/JVM，不依赖 Android、okhttp、Room，保证插件可用普通 Kotlin 工程开发；
  * - 插件以 dex-jar/apk 形式发布，打包时对本模块一律 `compileOnly`，
  *   运行时由宿主的 ClassLoader 提供实现（禁止把本模块打进插件，避免单例与类型分裂）；
