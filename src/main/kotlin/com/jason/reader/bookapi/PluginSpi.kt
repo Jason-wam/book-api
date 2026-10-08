@@ -75,6 +75,9 @@ interface RemoteBookSource {
     /** 书源展示名 */
     val name: String
 
+    /** 书源站点根地址（scheme://host），用于 UI 展示域名区分重名源；不可用时留空 */
+    val sourceUrl: String get() = ""
+
     /** 分组标签（可为空，宿主用于书源分组展示） */
     val group: String get() = ""
 
@@ -93,6 +96,18 @@ interface RemoteBookSource {
 
     /** 章节目录（顺序即书籍章节顺序；[BookChapter.url] 为正文页地址） */
     suspend fun getChapterList(detailUrl: String): Result<List<BookChapter>>
+
+    /**
+     * 带目录分页进度的重载：目录被站点拆成多页时，每抓完一页回调一次
+     * （[pagesFetched] 已抓取页数、[chapters] 已累计章节数），供 UI 展示进度。
+     *
+     * 默认实现直接委托 [getChapterList]、不报告进度——不破坏旧插件的二进制兼容，
+     * 支持分页的源（如 JSON 规则源）覆盖此方法。
+     */
+    suspend fun getChapterList(
+        detailUrl: String,
+        onTocProgress: ((pagesFetched: Int, chapters: Int) -> Unit)?,
+    ): Result<List<BookChapter>> = getChapterList(detailUrl)
 
     /** 拉取单章正文（[BookChapter] 由本 source 的目录方法产出） */
     suspend fun getChapterContent(

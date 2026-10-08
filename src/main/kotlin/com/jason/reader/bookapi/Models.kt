@@ -25,6 +25,10 @@ data class SearchBook(
     val intro: String = "",
     /** 最新章节名（仅网文站点有，可空） */
     val latestChapter: String = "",
+    /** 更新状态（如"连载中"/"已完结"，可空） */
+    val updateStatus: String = "",
+    /** 更新日期（如"2024-01-15"，可空） */
+    val updateDate: String = "",
     /** 书籍详情页地址（后续 getBookInfo/getChapterList 的入参） */
     val detailUrl: String,
 )
